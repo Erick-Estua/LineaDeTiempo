@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolución de Procesadores de Texto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #6C5CE7;
+            --secondary: #A8A4FF;
+            --accent: #FF7675;
+            --background: #2D3436;
+            --text: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: var(--background);
+            color: var(--text);
+        }
+
+        .header {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, var(--primary), #8E7CFF);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            width: 150%;
+            height: 40px;
+            background: var(--accent);
+            transform: rotate(-2deg);
+            bottom: -20px;
+            left: -25%;
+        }
+
+        .instituto {
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            color: #FFEAA7;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-container {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 4rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 0 20px rgba(108, 92, 231, 0.4);
+        }
+
+        .timeline-item {
+            width: calc(50% - 4rem);
+            margin: 2rem 0;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: calc(50% + 4rem);
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 0;
+        }
+
+        .timeline-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 2rem;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .timeline-date {
+            font-size: 1.8rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            color: #FFEAA7;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-detail {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        .timeline-item.active .timeline-detail {
+            max-height: 500px;
+            margin-top: 1.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border: 3px solid var(--background);
+            border-radius: 50%;
+            top: 30px;
+        }
+
+        .timeline-item:nth-child(odd)::before {
+            right: -56px;
+        }
+
+        .timeline-item:nth-child(even)::before {
+            left: -56px;
+        }
+
+        .continue-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--accent);
+            color: var(--text);
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 2rem auto;
+            display: block;
+            width: fit-content;
+        }
+
+        .continue-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 118, 117, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 2rem;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                margin-left: 4rem;
+            }
+
+            .timeline-item::before {
+                left: -44px !important;
+            }
+        }
+
+        .timeline-detail img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="instituto">Instituto "La Colina"</div>
+        <h1>Evolución de Procesadores de Texto</h1>
+    </div>
+
+    <div class="timeline-container">
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1964</div>
+                    <div class="timeline-title">IBM MT/ST</div>
+                    <div class="timeline-detail">
+                        Primer sistema de procesamiento de texto electromecánico que combinaba una máquina de escribir magnética con una cinta de almacenamiento.
+                        <img src="IBM.png" alt="IBM MT/ST">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1976</div>
+                    <div class="timeline-title">Electric Pencil</div>
+                    <div class="timeline-detail">
+                        Primer procesador de texto para microcomputadoras, desarrollado por Michael Shrayer para Apple II.
+                        <img src="Electric Pencil.png" alt="Electric Pencil">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1978</div>
+                    <div class="timeline-title">Word
+                        Star</div>
+                    <div class="timeline-detail">
+                        Primer procesador de texto popular para CP/M, luego adaptado para DOS. Introdujo comandos basados en teclas de control.
+                        <img src="WordStar.jpg" alt="WordStar">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1983</div>
+                    <div class="timeline-title">Microsoft Word 1.0</div>
+                    <div class="timeline-detail">
+                        Lanzado para MS-DOS con interfaz gráfica primitiva. Introdujo el concepto WYSIWYG (What You See Is What You Get).
+                        <img src="1983.png" alt="Microsoft Word 1.0">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1985</div>
+                    <div class="timeline-title">WordPerfect</div>
+                    <div class="timeline-detail">
+                        Dominó el mercado de los 80s con su sistema de códigos revelados y compatibilidad con múltiples impresoras.
+                        <img src="WordPerfect.png" alt="WordPerfect">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1990</div>
+                    <div class="timeline-title">Microsoft Word Windows</div>
+                    <div class="timeline-detail">
+                        Primera versión para Windows 3.0, estableciendo el estándar para interfaces gráficas de procesadores de texto.
+                        <img src="1990.jpg" alt="Microsoft Word Windows">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">1995</div>
+                    <div class="timeline-title">WordPad</div>
+                    <div class="timeline-detail">
+                        Incluido en Windows 95 como alternativa intermedia entre el Bloc de notas y Word.
+                        <img src="WordPad.png" alt="WordPad">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2006</div>
+                    <div class="timeline-title">Google Docs</div>
+                    <div class="timeline-detail">
+                        Primer procesador de texto basado en web con colaboración en tiempo real, cambiando el paradigma de trabajo.
+                        <img src="Google docs.jpg" alt="Google Docs">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2013</div>
+                    <div class="timeline-title">Office 365</div>
+                    <div class="timeline-detail">
+                        Transición al modelo de suscripción con almacenamiento en la nube y actualizaciones constantes.
+                        <img src="Office 13.jpg" alt="Office 365">
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <div class="timeline-date">2020</div>
+                    <div class="timeline-title">IA Integrada</div>
+                    <div class="timeline-detail">
+                        Implementación de herramientas de IA para corrección predictiva, escritura asistida y análisis de contenido.
+                        <img src="IA.png" alt="IA Integrada">
+                    </div>
+                </div>
+            </div>
+
+            <a href="importancia.html" class="continue-btn">Continuar</a>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.timeline-content').forEach(item => {
+            item.addEventListener('click', function() {
+                this.parentElement.classList.toggle('active');
+            });
+        });
+
+        window.addEventListener('load', () => {
+            const items = document.querySelectorAll('.timeline-item');
+            items.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 150);
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            document.querySelector('.header').style.backgroundPositionY = `${scrolled * 0.5}px`;
+        });
+    </script>
+</body>
+</html>
